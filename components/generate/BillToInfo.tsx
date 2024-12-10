@@ -14,6 +14,7 @@ const FromInfo = ({ formData, setFormData }: { formData: any; setFormData: any }
   return (
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
       <Text className="text-xl font-bold">Bill To</Text>
+      <View className="border-b border-gray-300 pt-3" />
       <View>
         <MemoizedTextInputWithLabel
           containerClassName="my-4"

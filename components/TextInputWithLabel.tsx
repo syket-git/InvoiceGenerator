@@ -11,7 +11,7 @@ import {
 interface TextInputWithLabelProps extends TextInputProps {
   label?: string;
   value: string;
-  onChangeText: (text: string) => void;
+  onChangeText?: (text: string) => void;
   withoutLabel?: boolean;
   containerClassName: string;
   className?: string;
