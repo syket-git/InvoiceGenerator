@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -14,7 +15,16 @@ interface InfoType {
   businessNumber: string;
 }
 
-const FromInfo = () => {
+interface PaymentInfoType {
+  number: string;
+  date: any;
+  description: string;
+  rate: number;
+  quantity: number;
+  amount: number;
+}
+
+const ReviewInfo = ({ paymentInfo }: { paymentInfo: PaymentInfoType }) => {
   const [fromInfo, setFromInfo] = useState<InfoType | null>(null);
   const [billToInfo, setBillToInfo] = useState<InfoType | null>(null);
 
@@ -34,6 +44,17 @@ const FromInfo = () => {
     <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
       <Text className="my-2 text-center text-xl font-bold">Review your invoice details</Text>
       <View>
+        <View>
+          <Text className="my-2 text-xl font-bold">Invoice: #{paymentInfo.number}</Text>
+          <Text className="my-2 text-xl font-bold">
+            {dayjs(paymentInfo?.date).locale('en').format('MMMM, DD, YYYY')}
+          </Text>
+          <Text className="my-2 text-xl font-bold">Quantity: {paymentInfo.quantity}</Text>
+          <Text className="my-2 text-xl font-bold">Rate: {paymentInfo.rate} USD</Text>
+          <Text className="my-2 text-xl font-bold">
+            Total Amount: {Number(paymentInfo?.quantity) * Number(paymentInfo.rate)} USD
+          </Text>
+        </View>
         <View>
           <Text className="my-2 text-xl font-bold">From</Text>
           <View className="border-b border-gray-300" />
@@ -63,4 +84,4 @@ const FromInfo = () => {
   );
 };
 
-export default FromInfo;
+export default ReviewInfo;
